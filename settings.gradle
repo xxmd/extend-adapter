@@ -1,0 +1,3 @@
+rootProject.name = "extend-adapter"
+include ':app'
+include ':mylibrary'
