@@ -20,9 +20,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    buildFeatures {
-        viewBinding true
-    }
+//    buildFeatures {
+//        viewBinding true
+//    }
 }
 
 dependencies {
@@ -34,11 +34,16 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+afterEvaluate {
+    // remove BuildConfig class in class.jar
+    generateReleaseBuildConfig.enabled = false
+}
+
 // ref from https://github.com/cats-oss/android-gpuimage/blob/master/library/build.gradle
 ext {
     publishedGroupId = 'io.github.xxmd'
-    artifact = 'extend-adapter'
-    libraryVersion = '1.0.0'
+    artifact = rootProject.name
+    libraryVersion = '1.0.1'
     libraryDescription = 'Extend recycleView adapter for single and multiple choose'
     siteUrl = 'https://github.com/xxmd/' + artifact
 }
