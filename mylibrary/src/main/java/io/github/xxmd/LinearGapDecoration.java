@@ -27,6 +27,5 @@ public class LinearGapDecoration extends RecyclerView.ItemDecoration {
         if (position != 0) {
             outRect.top = space;
         }
-        super.getItemOffsets(outRect, view, parent, state);
     }
 }
