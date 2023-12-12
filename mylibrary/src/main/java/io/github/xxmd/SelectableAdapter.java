@@ -1,5 +1,6 @@
 package io.github.xxmd;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class SelectableAdapter<T, VH extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<VH> {
+    public static final String TAG = SelectableAdapter.class.getName();
     public List<T> itemList = new ArrayList<>();
     private boolean editable = false;
 
@@ -60,6 +62,11 @@ public abstract class SelectableAdapter<T, VH extends RecyclerView.ViewHolder> e
     abstract void removeSelectItem(T item);
 
     public void selectByIndex(int index) {
+        if (index < 0) {
+            Log.e(TAG, "Select failure, cannot find special item in itemList");
+            return;
+
+        }
         T item = itemList.get(index);
         addSelectItem(item);
         notifyItemChanged(index);
@@ -104,5 +111,13 @@ public abstract class SelectableAdapter<T, VH extends RecyclerView.ViewHolder> e
                 .inflate(layoutId, parent, false);
 
         return view;
+    }
+
+    public void toggleSelect(T item) {
+        if (isSelected(item)) {
+            unSelectByObject(item);
+        } else {
+            selectByObject(item);
+        }
     }
 }

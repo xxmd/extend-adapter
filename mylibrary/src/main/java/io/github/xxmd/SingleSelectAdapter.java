@@ -52,7 +52,7 @@ public abstract class SingleSelectAdapter<T, VH extends RecyclerView.ViewHolder>
         return selectItem;
     }
 
-    public void setSelectItem(T selectItem) {
+    private void setSelectItem(T selectItem) {
         if (this.selectItem != null) {
             int preSelectedIndex = itemList.indexOf(this.selectItem);
             this.selectItem = selectItem;
